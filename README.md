@@ -1,4 +1,4 @@
-# Project 1 - *Name of App Here*
+# Project 1 - *TIPSY*
 
 **Tipsy** is a tip calculator application for iOS.
 
