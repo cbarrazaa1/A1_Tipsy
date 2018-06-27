@@ -23,11 +23,40 @@
 
 @implementation ViewController
 
+- (void)updateUI {
+    double bill = [self.txtBill.text doubleValue];
+    double tipPercent = self.stpTip.value / 100;
+    double tip = tipPercent * bill;
+    double total = bill + tip;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL sign = [defaults boolForKey:@"default_sign"];
+    
+    NSString* tipText;
+    NSString* totalText;
+    
+    if(sign == YES)
+    {
+        tipText = [NSString stringWithFormat:@"$%.2f", tip];
+        totalText = [NSString stringWithFormat:@"$%.2f", total];
+    }
+    else
+    {
+        
+    }
+    
+    self.lblTip.text = [NSString stringWithFormat:@"$%.2f", tip];
+    self.lblTotal.text = [NSString stringWithFormat:@"$%.2f", total];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.txtBill becomeFirstResponder];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self updateUI];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -40,19 +69,7 @@
 }
 
 - (IBAction)onEdit:(id)sender {
-    double bill = [self.txtBill.text doubleValue];
-    double tipPercent = self.stpTip.value / 100;
-    double tip = tipPercent * bill;
-    double total = bill + tip;
-    
-    NSString* text = self.txtBill.text;
-    NSNumberFormatter* formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSString* formatted = [formatter text];
-    
-    self.txtBill.text = [NSString stringWithString: formatted];
-    self.lblTip.text = [NSString stringWithFormat:@"$%.2f", tip];
-    self.lblTotal.text = [NSString stringWithFormat:@"$%.2f", total];
+    [self updateUI];
 }
 
 - (IBAction)onEditingDidBegin:(id)sender {

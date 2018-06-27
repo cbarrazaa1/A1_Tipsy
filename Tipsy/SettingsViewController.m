@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+// controller declarations
 
 @end
 
@@ -33,5 +34,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)onValueChange:(id)sender {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.chkSign.on forKey:@"defaults_sign"];
+    [defaults synchronize];
+}
 
 @end
