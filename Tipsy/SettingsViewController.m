@@ -10,6 +10,7 @@
 
 @interface SettingsViewController ()
 // controller declarations
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sgmCurrency;
 
 @end
 
@@ -17,7 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger sign = [defaults integerForKey:@"defaults_sign"];
+    self.sgmCurrency.selectedSegmentIndex = sign;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +39,7 @@
 */
 - (IBAction)onValueChange:(id)sender {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.chkSign.on forKey:@"defaults_sign"];
+    [defaults setInteger:self.sgmCurrency.selectedSegmentIndex forKey:@"defaults_sign"];
     [defaults synchronize];
 }
 

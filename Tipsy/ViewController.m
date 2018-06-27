@@ -30,23 +30,29 @@
     double total = bill + tip;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL sign = [defaults boolForKey:@"default_sign"];
+    NSInteger sign = [defaults integerForKey:@"defaults_sign"];
     
     NSString* tipText;
     NSString* totalText;
     
-    if(sign == YES)
+    switch(sign)
     {
-        tipText = [NSString stringWithFormat:@"$%.2f", tip];
-        totalText = [NSString stringWithFormat:@"$%.2f", total];
-    }
-    else
-    {
-        
+        case 0:
+            tipText = [NSString stringWithFormat:@"$%.2f", tip];
+            totalText = [NSString stringWithFormat:@"$%.2f", total];
+            break;
+        case 1:
+            tipText = [NSString stringWithFormat:@"€%.2f", tip];
+            totalText = [NSString stringWithFormat:@"€%.2f", total];
+            break;
+        case 2:
+            tipText = [NSString stringWithFormat:@"£%.2f", tip];
+            totalText = [NSString stringWithFormat:@"£%.2f", total];
+            break;
     }
     
-    self.lblTip.text = [NSString stringWithFormat:@"$%.2f", tip];
-    self.lblTotal.text = [NSString stringWithFormat:@"$%.2f", total];
+    self.lblTip.text = tipText;
+    self.lblTotal.text = totalText;
 }
 
 - (void)viewDidLoad {
