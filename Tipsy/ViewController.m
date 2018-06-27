@@ -63,6 +63,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.txtBill becomeFirstResponder];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    double bill = [defaults integerForKey:@"defaults_bill"];
+    NSNumber* val = [NSNumber numberWithDouble:bill];
+    self.txtBill.text = [val stringValue];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -112,6 +117,11 @@
         self.vwTip.frame = frameTip;
         self.vwTotal.frame = frameTotal;
     }];
+    
+    // save the bill amount
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:[self.txtBill.text doubleValue] forKey:@"defaults_bill"];
+    [defaults synchronize];
 }
 
 - (IBAction)onValueChanged:(id)sender {
