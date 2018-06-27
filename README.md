@@ -13,7 +13,7 @@ The following **required** functionality is complete:
 * [ X] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 
 The following **optional** features are implemented:
-* [ ] Settings page to change the default tip percentage.
+* [] Settings page to change the default tip percentage.
 * [ X] UI animations
 * [ ] Remembering the bill amount across app restarts (if <10mins)
 * [ ] Using locale-specific currency and currency thousands separators.
@@ -33,17 +33,16 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- This app really allowed me to familiarize with Objective-C syntax.
+- At first I struggled a bit coming up with a new UI.
 
 ## Credits
-
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2018] [Cesar Barraza]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
