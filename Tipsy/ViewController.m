@@ -33,7 +33,7 @@
     double tip = tipPercent * bill;
     double total = bill + tip;
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSInteger sign = [defaults integerForKey:@"defaults_sign"];
     
     NSString* tipText;
@@ -84,6 +84,13 @@
 }
 
 - (IBAction)onEditingDidBegin:(id)sender {
+    // if there is a zero, clear the field
+    double val = [self.txtBill.text doubleValue];
+    if(val == 0)
+    {
+        self.txtBill.text = @"";
+    }
+    
     CGRect frameTip = self.vwTip.frame;
     CGRect frameTotal = self.vwTotal.frame;
     frameTip.origin.y = 181;
