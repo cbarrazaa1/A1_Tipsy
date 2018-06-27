@@ -9,8 +9,9 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
-// controller declarations
-@property (weak, nonatomic) IBOutlet UISegmentedControl *sgmCurrency;
+
+// control definitions
+@property (weak, nonatomic) IBOutlet UISegmentedControl* sgmCurrency;
 
 @end
 

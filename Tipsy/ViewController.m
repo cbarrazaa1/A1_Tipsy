@@ -17,12 +17,16 @@
 @property (weak, nonatomic) IBOutlet UILabel* lblPercent;
 @property (weak, nonatomic) IBOutlet UIStepper* stpTip;
 @property (weak, nonatomic) IBOutlet UIView* vwTip;
-@property (weak, nonatomic) IBOutlet UIView *vwTotal;
+@property (weak, nonatomic) IBOutlet UIView* vwTotal;
 
 @end
 
 @implementation ViewController
 
+/*
+    @funcName updateUI
+    @desc Updates the tip and total labels.
+*/
 - (void)updateUI {
     double bill = [self.txtBill.text doubleValue];
     double tipPercent = self.stpTip.value / 100;
@@ -35,6 +39,7 @@
     NSString* tipText;
     NSString* totalText;
     
+    // figure out which sign we have to use
     switch(sign)
     {
         case 0:
@@ -79,12 +84,6 @@
 }
 
 - (IBAction)onEditingDidBegin:(id)sender {
-    double val = [self.txtBill.text doubleValue];
-    if(val == 0)
-    {
-        self.txtBill.text = @"";
-    }
-    
     CGRect frameTip = self.vwTip.frame;
     CGRect frameTotal = self.vwTotal.frame;
     frameTip.origin.y = 181;
@@ -110,6 +109,8 @@
 
 - (IBAction)onValueChanged:(id)sender {
     int value = self.stpTip.value;
+    
+    // %% is the literal for adding an actual percentage sign with formatting
     self.lblPercent.text = [NSString stringWithFormat:@"%i%%", value];
 }
 @end
