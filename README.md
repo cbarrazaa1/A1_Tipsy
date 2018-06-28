@@ -21,8 +21,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-[X] Can set tip from 10% to 25% using a stepper control.
-[X] Settings page for different currencies and thousands separator.
+* [X] Can set tip from 10% to 25% using a stepper control.
+* [X] Settings page for different currencies and thousands separator.
 
 ## Video Walkthrough
 
