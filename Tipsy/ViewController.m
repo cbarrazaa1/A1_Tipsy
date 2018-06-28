@@ -35,24 +35,56 @@
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSInteger sign = [defaults integerForKey:@"defaults_sign"];
+    BOOL sep = [defaults boolForKey:@"defaults_sep"];
     
     NSString* tipText;
     NSString* totalText;
+    
+    NSNumber* numTip = [NSNumber numberWithDouble:tip];
+    NSNumber* numTotal = [NSNumber numberWithDouble:total];
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    formatter.locale = [NSLocale currentLocale];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    formatter.usesGroupingSeparator = YES;
     
     // figure out which sign we have to use
     switch(sign)
     {
         case 0:
-            tipText = [NSString stringWithFormat:@"$%.2f", tip];
-            totalText = [NSString stringWithFormat:@"$%.2f", total];
+            if(sep)
+            {
+                tipText = [NSString stringWithFormat:@"$%@", [formatter stringForObjectValue:numTip]];
+                totalText = [NSString stringWithFormat:@"$%@", [formatter stringForObjectValue:numTotal]];
+            }
+            else
+            {
+                tipText = [NSString stringWithFormat:@"$%.2f", tip];
+                totalText = [NSString stringWithFormat:@"$%.2f", total];
+            }
             break;
         case 1:
-            tipText = [NSString stringWithFormat:@"€%.2f", tip];
-            totalText = [NSString stringWithFormat:@"€%.2f", total];
+            if(sep)
+            {
+                tipText = [NSString stringWithFormat:@"€%@", [formatter stringForObjectValue:numTip]];
+                totalText = [NSString stringWithFormat:@"€%@", [formatter stringForObjectValue:numTotal]];
+            }
+            else
+            {
+                tipText = [NSString stringWithFormat:@"€%.2f", tip];
+                totalText = [NSString stringWithFormat:@"€%.2f", total];
+            }
             break;
         case 2:
-            tipText = [NSString stringWithFormat:@"£%.2f", tip];
-            totalText = [NSString stringWithFormat:@"£%.2f", total];
+            if(sep)
+            {
+                tipText = [NSString stringWithFormat:@"£%@", [formatter stringForObjectValue:numTip]];
+                totalText = [NSString stringWithFormat:@"£%@", [formatter stringForObjectValue:numTotal]];
+            }
+            else
+            {
+                tipText = [NSString stringWithFormat:@"£%.2f", tip];
+                totalText = [NSString stringWithFormat:@"£%.2f", total];
+            }
             break;
     }
     

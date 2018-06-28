@@ -12,6 +12,7 @@
 
 // control definitions
 @property (weak, nonatomic) IBOutlet UISegmentedControl* sgmCurrency;
+@property (weak, nonatomic) IBOutlet UISwitch* chkSeparator;
 
 @end
 
@@ -22,6 +23,9 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSInteger sign = [defaults integerForKey:@"defaults_sign"];
     self.sgmCurrency.selectedSegmentIndex = sign;
+    
+    BOOL sep = [defaults boolForKey:@"defaults_sep"];
+    self.chkSeparator.on = sep;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +45,12 @@
 - (IBAction)onValueChange:(id)sender {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:self.sgmCurrency.selectedSegmentIndex forKey:@"defaults_sign"];
+    [defaults synchronize];
+}
+
+- (IBAction)switchValueChange:(id)sender {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.chkSeparator.on forKey:@"defaults_sep"];
     [defaults synchronize];
 }
 
